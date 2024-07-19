@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './PasswordRecoveryPage.css';
 import logo from '../assets/luxurylogo.jpeg'
+import './PasswordRecoveryPage.css'
 
 const PasswordRecoveryPage = () => {
   const [email, setEmail] = useState('');

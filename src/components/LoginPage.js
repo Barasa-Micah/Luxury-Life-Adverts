@@ -52,9 +52,9 @@ const LoginPage = () => {
         </form>
         <div className="links">
           <button 
-            onClick={() => console.log('Forgot Password Clicked')} 
+            onClick={() => navigate('/recover')} 
             className="link-button">
-            Forgot Password? 
+            Forgot Password
           </button>
           <button 
             onClick={() => navigate('/signup')} 
