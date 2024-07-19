@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
-import LogoutButton from './LogoutButton';
+import LogoutButton from './LogoutButton'; // Add this import
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen }) => {
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isOpen ? 'open' : ''}`}>
       <nav className="nav-menu">
         <ul>
           <li><Link to="/dashboard">Dashboard</Link></li>

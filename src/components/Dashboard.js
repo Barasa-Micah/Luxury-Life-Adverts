@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import './Dashboard.css';
 import './Background.css';
 
 const Dashboard = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
     <div className="background-wrapper">
-      <Navbar />
-      <div className="dashboard-container">
-        <Sidebar />
+      <Navbar toggleSidebar={toggleSidebar} />
+      <div className={`dashboard-container ${sidebarOpen ? 'sidebar-open' : ''}`}>
+        <Sidebar isOpen={sidebarOpen} />
         <div className="dashboard-content">
           <h1>Dashboard</h1>
           <div className="card-container">

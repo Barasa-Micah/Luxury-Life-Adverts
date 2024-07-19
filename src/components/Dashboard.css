@@ -32,3 +32,15 @@
     background-color: #8B5CF6; /* Purple background on hover */
   }
   
+  @media (max-width: 1024px) {
+    .card-container {
+      grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .card-container {
+      grid-template-columns: 1fr; /* One card per row */
+    }
+  }
+  
