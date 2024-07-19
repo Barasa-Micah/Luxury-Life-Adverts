@@ -1,6 +1,7 @@
 .background-wrapper {
     display: flex;
     height: 100vh;
+    flex-direction: column;
     background: url('../assets/istockphoto-1162089589-1024x1024.jpg_1721390422350.png') no-repeat center center fixed;
     background-size: cover;
   }

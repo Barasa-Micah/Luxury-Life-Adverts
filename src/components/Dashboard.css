@@ -1,34 +1,34 @@
 .dashboard-container {
     display: flex;
-    height: 100vh;
+    width: 100%;
+    height: calc(100vh - 60px); /* Adjust for navbar height */
   }
   
   .dashboard-content {
     flex-grow: 1;
     padding: 20px;
-    background-color: #ecf0f1;
+    background-color: rgba(255, 255, 255, 0.8); /* Light background to make content readable */
     overflow-y: auto;
   }
   
   .card-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr); /* Three cards per row */
     gap: 20px;
   }
   
   .card {
-    background-color: #60A5FA; 
+    background-color: #60A5FA; /* Blue card background */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     font-size: 1.2rem;
-    color: white; 
-    height: 150px; 
-    width: calc(100% - 40px); 
-    transition: background-color 0.3s; 
+    color: white; /* Card text color */
+    height: 150px; /* Increased height */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
   }
   
   .card:hover {
-    background-color: #8B5CF6; 
+    background-color: #8B5CF6; /* Purple background on hover */
   }
   

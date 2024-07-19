@@ -1,11 +1,13 @@
 import React from 'react';
 import Sidebar from './Sidebar';
+import Navbar from './Navbar';
 import './Dashboard.css';
 import './Background.css';
 
 const Dashboard = () => {
   return (
     <div className="background-wrapper">
+      <Navbar />
       <div className="dashboard-container">
         <Sidebar />
         <div className="dashboard-content">
