@@ -1,0 +1,71 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('../assets/istockphoto-1162089589-1024x1024.jpg_1721390422350.png') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  .signup-container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    color: white;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .button {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .links {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .link {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  .error {
+    color: red;
+    margin: 0.5rem 0;
+  }
+  
