@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
+import LogoutButton from './LogoutButton';
 
 const Sidebar = () => {
   return (
@@ -17,7 +18,7 @@ const Sidebar = () => {
           <li><Link to="/total-withdrawal">Total Withdrawal</Link></li>
           <li><Link to="/invested-profit">Invested Profit</Link></li>
           <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/">Logout</Link></li>
+          <li><LogoutButton /></li>
         </ul>
       </nav>
     </div>

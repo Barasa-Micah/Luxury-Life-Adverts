@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import logo from '../assets/luxurylogo.jpeg';
+import Notification from './Notification';
+import { getGreeting } from '../utils/getGreeting';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [notification, setNotification] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -14,10 +17,10 @@ const LoginPage = () => {
     if (username && password) {
       // Simulate an API call
       setTimeout(() => {
-        // Simulating a successful login
         if (username === 'admin' && password === 'password') {
           setMessage('Login successful');
-          navigate('/home');
+          setNotification(`${getGreeting()}, ${username}!`);
+          navigate('/dashboard');
         } else {
           setMessage('Invalid username or password');
         }
@@ -50,18 +53,7 @@ const LoginPage = () => {
           {message && <p className={message === 'Login successful' ? 'success' : 'error'}>{message}</p>}
           <button type="submit" className="button">Login Now</button>
         </form>
-        <div className="links">
-          <button 
-            onClick={() => navigate('/recover')} 
-            className="link-button">
-            Forgot Password
-          </button>
-          <button 
-            onClick={() => navigate('/signup')} 
-            className="link-button">
-            Create Account
-          </button>
-        </div>
+        {notification && <Notification message={notification} onClose={() => setNotification('')} />}
       </div>
     </div>
   );
