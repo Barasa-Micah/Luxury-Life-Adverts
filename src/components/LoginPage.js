@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
-import logo from '../assets/luxurylogo.jpeg'
+import logo from '../assets/luxurylogo.jpeg';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -57,7 +57,7 @@ const LoginPage = () => {
             Forgot Password
           </button>
           <button 
-            onClick={() => console.log('Create Account Clicked')} 
+            onClick={() => navigate('/signup')} 
             className="link-button">
             Create Account
           </button>
