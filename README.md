@@ -1,70 +1,171 @@
-# Getting Started with Create React App
+# Luxury Life Adverts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Luxury Life Adverts is a full-stack web application designed to manage user authentication, WhatsApp balance, and other user-related data. The frontend is built with React, and the backend is developed using Flask and MySQL.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Project Structure](#project-structure)
+- [License](#license)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- User Registration
+- User Login and Logout
+- Fetch and display WhatsApp balance
+- Withdraw from WhatsApp balance
+- Dynamic and responsive frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+- Node.js and npm
+- Python 3
+- MySQL
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+### Backend Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/yourusername/luxury-life-adverts.git
+    cd luxury-life-adverts/backend
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Create and activate a virtual environment**:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **Install dependencies**:
+    ```bash
+    pip install Flask Flask-MySQLdb flask-cors
+    ```
 
-### `npm run eject`
+4. **Create a MySQL database and table**:
+    ```sql
+    CREATE DATABASE luxury_life_adverts;
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    USE luxury_life_adverts;
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    CREATE TABLE users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(50) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        password VARCHAR(100) NOT NULL,
+        whatsapp_balance DECIMAL(10, 2) DEFAULT 0.00
+    );
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. **Set up environment variables** (create a `.env` file in the `backend` directory):
+    ```plaintext
+    SECRET_KEY=your_secret_key
+    MYSQL_HOST=localhost
+    MYSQL_USER=your_mysql_username
+    MYSQL_PASSWORD=your_mysql_password
+    MYSQL_DB=luxury_life_adverts
+    ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+6. **Run the Flask app**:
+    ```bash
+    python app.py
+    ```
 
-## Learn More
+### Frontend Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Navigate to the frontend directory**:
+    ```bash
+    cd ../frontend
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-### Code Splitting
+3. **Run the React app**:
+    ```bash
+    npm start
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Usage
 
-### Analyzing the Bundle Size
+1. **Access the application**:
+   Open your web browser and navigate to `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. **Register a new user**:
+   Use the registration form to create a new account.
 
-### Making a Progressive Web App
+3. **Login**:
+   Use the login form to access your account.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. **View WhatsApp balance**:
+   Navigate to the WhatsApp balance section to view your balance and transaction history.
 
-### Advanced Configuration
+5. **Withdraw from WhatsApp balance**:
+   Use the withdraw form to withdraw funds from your WhatsApp balance.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## API Endpoints
 
-### Deployment
+### Authentication
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **POST /auth/register**: Register a new user.
+- **POST /auth/login**: Login a user.
+- **POST /auth/logout**: Logout a user.
 
-### `npm run build` fails to minify
+### User Data
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **GET /user/whatsapp-balance**: Get the current WhatsApp balance.
+- **POST /user/withdraw**: Withdraw from the WhatsApp balance.
+
+## Project Structure
+
+```plaintext
+luxury-life-adverts/
+├── backend/
+│   ├── app.py
+│   ├── config.py
+│   ├── models.py
+│   ├── routes/
+│   │   ├── __init__.py
+│   │   ├── auth.py
+│   │   ├── user.py
+│   ├── static/
+│   ├── templates/
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── api/
+│   │   │   ├── axios.js
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │   ├── Navbar.js
+│   │   │   ├── Navbar.css
+│   │   │   ├── Sidebar.js
+│   │   │   ├── Sidebar.css
+│   │   │   ├── Dashboard.js
+│   │   │   ├── Dashboard.css
+│   │   │   ├── LoginPage.js
+│   │   │   ├── LoginPage.css
+│   │   │   ├── LogoutButton.js
+│   │   │   ├── Notification.js
+│   │   │   ├── WhatsappBalance.js
+│   │   │   ├── TotalWhatsappWithdrawn.js
+│   │   │   ├── CurrentPackage.js
+│   │   │   ├── YourCashback.js
+│   │   │   ├── DepositBalance.js
+│   │   │   ├── AccountBalance.js
+│   │   │   ├── TotalWithdrawal.js
+│   │   │   ├── InvestedProfit.js
+│   │   │   ├── Contact.js
+│   │   ├── utils/
+│   │   │   ├── getGreeting.js
+│   │   ├── App.js
+│   │   ├── index.js
+│   ├── package.json
+│   ├── README.md

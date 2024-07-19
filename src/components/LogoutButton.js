@@ -11,7 +11,7 @@ const LogoutButton = () => {
     setNotification(`${getGreeting()}, see you soon!`);
     setTimeout(() => {
       navigate('/');
-    }, 2000); // Simulate logout delay and redirect to login page
+    }, 2000); 
   };
 
   return (
