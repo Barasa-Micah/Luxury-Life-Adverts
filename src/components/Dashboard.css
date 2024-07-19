@@ -1,0 +1,26 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .dashboard-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
+    overflow-y: auto;
+  }
+  
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: #bdc3c7;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+  
