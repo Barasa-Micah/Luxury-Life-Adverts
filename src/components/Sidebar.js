@@ -13,6 +13,9 @@ const Sidebar = () => {
       <nav className="nav-menu">
         <ul>
           <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
             <Link to="/dashboard">Whatsapp Balance</Link>
           </li>
           <li>

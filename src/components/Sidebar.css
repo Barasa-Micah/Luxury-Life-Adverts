@@ -1,7 +1,7 @@
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #1E3A8A; 
+    background-color: #1E3A8A; /* Blue theme color */
     color: #ecf0f1;
     display: flex;
     flex-direction: column;
@@ -53,6 +53,6 @@
   }
   
   .nav-menu a:hover {
-    background-color: #4F46E5;
+    background-color: #4F46E5; /* Lighter blue for hover effect */
   }
   
