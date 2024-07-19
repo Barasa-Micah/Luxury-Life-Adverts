@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SignupPage.css';
+import logo from '../assets/luxurylogo.jpeg'
 
 const SignupPage = () => {
   const [username, setUsername] = useState('');
@@ -13,7 +14,6 @@ const SignupPage = () => {
   const handleSignup = (e) => {
     e.preventDefault();
     if (username && phone && email && password) {
-      // Simulate a successful signup
       navigate('/');
     } else {
       setError('Please fill out all fields');
@@ -23,7 +23,7 @@ const SignupPage = () => {
   return (
     <div className="wrapper">
       <div className="signup-container">
-        <img src="/assets/logo.png" alt="Crown Wave Adverts Logo" className="logo" />
+        <img src={logo} alt="Luxury Life Adverts" className="logo"/>
         <h1 className="title">LUXURY LIFE ADVERTS</h1>
         <form className="form" onSubmit={handleSignup}>
           <input
