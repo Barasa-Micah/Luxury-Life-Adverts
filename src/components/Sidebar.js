@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Sidebar.css';
 
 const Sidebar = () => {
@@ -6,17 +7,17 @@ const Sidebar = () => {
     <div className="sidebar">
       <nav className="nav-menu">
         <ul>
-          <li>Dashboard</li>
-          <li>Whatsapp Balance</li>
-          <li>Total Whatsapp Withdrawn</li>
-          <li>Current Package</li>
-          <li>Your Cashback</li>
-          <li>Deposit Balance</li>
-          <li>Account Balance</li>
-          <li>Total Withdrawal</li>
-          <li>Invested Profit</li>
-          <li>Contact</li>
-          <li>Logout</li>
+          <li><Link to="/dashboard">Dashboard</Link></li>
+          <li><Link to="/whatsapp-balance">Whatsapp Balance</Link></li>
+          <li><Link to="/total-whatsapp-withdrawn">Total Whatsapp Withdrawn</Link></li>
+          <li><Link to="/current-package">Current Package</Link></li>
+          <li><Link to="/your-cashback">Your Cashback</Link></li>
+          <li><Link to="/deposit-balance">Deposit Balance</Link></li>
+          <li><Link to="/account-balance">Account Balance</Link></li>
+          <li><Link to="/total-withdrawal">Total Withdrawal</Link></li>
+          <li><Link to="/invested-profit">Invested Profit</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+          <li><Link to="/">Logout</Link></li>
         </ul>
       </nav>
     </div>
