@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 import logo from '../assets/luxurylogo.jpeg';
-import { FaBars, FaHome, FaChartLine, FaUsers, FaExchangeAlt, FaBox, FaCloudUploadAlt, FaShoppingCart, FaPhone, FaSignOutAlt, FaEnvelope } from 'react-icons/fa';
+import { FaBars, FaHome, FaChartLine, FaUsers, FaExchangeAlt, FaBox, FaCloudUploadAlt, FaShoppingCart, FaPhone, FaSignOutAlt, FaEnvelope, FaInfinity, FaCubes, FaKey } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [user, setUser] = useState({ username: "", firstName: "", lastName: "" });
   const [menuOpen, setMenuOpen] = useState(false);
+  const [unreadMessages, setUnreadMessages] = useState(0); // Initial count
+  const [cartItems, setCartItems] = useState(0); // Initial count
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -15,6 +17,17 @@ const Dashboard = () => {
     if (storedUsername && storedFirstName && storedLastName) {
       setUser({ username: storedUsername, firstName: storedFirstName, lastName: storedLastName });
     }
+
+    // Simulate fetching unread messages count and cart items count
+    const fetchCounts = async () => {
+      // Replace these with actual API calls or other logic
+      const messagesCount = await Promise.resolve(3); // Example: fetchUnreadMessagesCount()
+      const itemsCount = await Promise.resolve(2); // Example: fetchCartItemsCount()
+      setUnreadMessages(messagesCount);
+      setCartItems(itemsCount);
+    };
+
+    fetchCounts();
   }, []);
 
   const toggleMenu = () => {
@@ -36,21 +49,31 @@ const Dashboard = () => {
           <h1 className="dashboard-title">Rich-Life Adverts</h1>
         </div>
         <div className="header-right">
-          <FaEnvelope className="icon" />
-          <FaShoppingCart className="icon" />
+          <div className="icon-container">
+            <FaEnvelope className="icon" />
+            {unreadMessages > 0 && <span className="badge">{unreadMessages}</span>}
+          </div>
+          <div className="icon-container">
+            <FaShoppingCart className="icon" />
+            {cartItems > 0 && <span className="badge">{cartItems}</span>}
+          </div>
           <FaBars className="hamburger-icon" onClick={toggleMenu} />
         </div>
       </header>
       <div className={`overlay ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
         <nav className="overlay-menu" onClick={(e) => e.stopPropagation()}>
+          <h2 className="overlay-title">Menu</h2>
           <ul>
             <li><NavLink to="/dashboard/home"><FaHome /> Home</NavLink></li>
             <li><NavLink to="/dashboard/investment"><FaChartLine /> Investment</NavLink></li>
             <li><NavLink to="/dashboard/team"><FaUsers /> Team</NavLink></li>
             <li><NavLink to="/dashboard/transactions"><FaExchangeAlt /> Transactions</NavLink></li>
             <li><NavLink to="/dashboard/packages"><FaBox /> Packages</NavLink></li>
+            <li><NavLink to="/dashboard/forex"><FaInfinity /> Forex</NavLink></li>
             <li><NavLink to="/dashboard/uploads"><FaCloudUploadAlt /> Uploads</NavLink></li>
-            <li><NavLink to="/dashboard/market-hub"><FaShoppingCart /> Market Hub</NavLink></li>
+            <li><NavLink to="/dashboard/market-hub"><FaCubes /> Market Hub</NavLink></li>
+            <li><NavLink to="/dashboard/my-cart"><FaShoppingCart /> My Cart</NavLink></li>
+            <li><NavLink to="/dashboard/premium-codes"><FaKey /> Premium Codes</NavLink></li>
             <li><NavLink to="/dashboard/customer-care"><FaPhone /> Customer Care</NavLink></li>
             <li><NavLink to="/dashboard/logout"><FaSignOutAlt /> Logout</NavLink></li>
           </ul>
