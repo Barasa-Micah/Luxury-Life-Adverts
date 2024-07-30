@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './Register.css';
 import logo from '../assets/luxurylogo.jpeg';
 
 const Register = () => {
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
     username: "",
     email: "",
     country: "",
@@ -13,6 +16,8 @@ const Register = () => {
     upline: 'None'
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -20,7 +25,12 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // Save user data to localStorage for now
+    localStorage.setItem('username', formData.username);
+    localStorage.setItem('firstName', formData.firstName);
+    localStorage.setItem('lastName', formData.lastName);
+    // Navigate to dashboard
+    navigate("/dashboard");
   };
 
   return (
@@ -31,6 +41,22 @@ const Register = () => {
             <img src={logo} alt="Luxury Life Adverts" className="Logo" />
             <h2>Register</h2>
           </div>
+          <input 
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+          <input 
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
           <input 
             type="text"
             name="username"
