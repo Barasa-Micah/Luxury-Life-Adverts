@@ -64,7 +64,7 @@ const Dashboard = () => {
           <h2 className="overlay-title">Menu</h2>
           <ul>
             <li><NavLink to="/dashboard"><FaHome /> Home</NavLink></li>
-            <li><NavLink to="/dashboard/investment"><FaChartLine /> Investment</NavLink></li>
+            <li><NavLink to="/investment"><FaChartLine /> Investment</NavLink></li>
             <li><NavLink to="/dashboard/team"><FaUsers /> Team</NavLink></li>
             <li><NavLink to="/dashboard/transactions"><FaExchangeAlt /> Transactions</NavLink></li>
             <li><NavLink to="/dashboard/packages"><FaBox /> Packages</NavLink></li>
