@@ -14,8 +14,8 @@ const Register = () => {
   });
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
-    setFormData({...formData, [name]: value});
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
@@ -23,12 +23,12 @@ const Register = () => {
     console.log(formData);
   };
 
-  return(
+  return (
     <div className="RegisterContainer">
       <div className="RegisterCard">
         <form className="RegisterForm" onSubmit={handleSubmit}>
           <div className="LogoContainer">
-            <img src={logo} alt="Luxury Life Adverts" className="logo" />
+            <img src={logo} alt="Luxury Life Adverts" className="Logo" />
             <h2>Register</h2>
           </div>
           <input 
@@ -89,10 +89,9 @@ const Register = () => {
             <a href="/customer-care">Customer Care</a>
           </div>
         </form>
-        <div className="RegisterImage"></div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Register;
