@@ -1,0 +1,84 @@
+:root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --background-color: #f4f4f9;
+    --input-border-color: #ccc;
+    --card-background-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  .LoginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background-color);
+  }
+  
+  .LoginCard {
+    width: 90%;
+    max-width: 500px;
+    background-color: var(--card-background-color);
+    border-radius: 10px;
+    box-shadow: 0 0 20px var(--shadow-color);
+    padding: 40px;
+  }
+  
+  .LoginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .LogoContainer {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .Logo {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .LoginForm input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid var(--input-border-color);
+    font-size: 16px;
+  }
+  
+  .LoginForm button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .LoginForm button:hover {
+    background-color: var(--primary-hover-color);
+  }
+  
+  .Links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .Links a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  .Links a:hover {
+    text-decoration: underline;
+  }
+  
