@@ -10,12 +10,12 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path='/register' element={<Register /> } />
-          <Route path='/login' element={<Login />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/' Component={Login} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
+          <Route path="/" element={<Login />} />
         </Routes>
-    </div>
+      </div>
     </Router>
   );
 }

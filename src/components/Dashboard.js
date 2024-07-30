@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import './Dashboard.css';
 import logo from '../assets/luxurylogo.jpeg';
+import { FaBars, FaHome, FaChartLine, FaUsers, FaExchangeAlt, FaBox, FaCloudUploadAlt, FaShoppingCart, FaPhone, FaSignOutAlt, FaEnvelope } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [user, setUser] = useState({ username: "", firstName: "", lastName: "" });
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -11,30 +14,54 @@ const Dashboard = () => {
     const storedLastName = localStorage.getItem('lastName');
     if (storedUsername && storedFirstName && storedLastName) {
       setUser({ username: storedUsername, firstName: storedFirstName, lastName: storedLastName });
-    } else {
-      // Navigate to login or registration if no user data is found (logic omitted for simplicity)
     }
   }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    if (!menuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  };
 
   const affiliateLink = `https://luxurylifeadverts.com/signup.php?cee=${user.firstName}${user.lastName}`;
 
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
-        <img src={logo} alt="Luxury Life Adverts" className="dashboard-logo" />
-        <h1>Rich-Life Adverts</h1>
+        <div className="header-left">
+          <img src={logo} alt="Luxury Life Adverts" className="dashboard-logo" />
+          <h1 className="dashboard-title">Rich-Life Adverts</h1>
+        </div>
+        <div className="header-right">
+          <FaEnvelope className="icon" />
+          <FaShoppingCart className="icon" />
+          <FaBars className="hamburger-icon" onClick={toggleMenu} />
+        </div>
       </header>
+      <div className={`overlay ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+        <nav className="overlay-menu" onClick={(e) => e.stopPropagation()}>
+          <ul>
+            <li><NavLink to="/dashboard/home"><FaHome /> Home</NavLink></li>
+            <li><NavLink to="/dashboard/investment"><FaChartLine /> Investment</NavLink></li>
+            <li><NavLink to="/dashboard/team"><FaUsers /> Team</NavLink></li>
+            <li><NavLink to="/dashboard/transactions"><FaExchangeAlt /> Transactions</NavLink></li>
+            <li><NavLink to="/dashboard/packages"><FaBox /> Packages</NavLink></li>
+            <li><NavLink to="/dashboard/uploads"><FaCloudUploadAlt /> Uploads</NavLink></li>
+            <li><NavLink to="/dashboard/market-hub"><FaShoppingCart /> Market Hub</NavLink></li>
+            <li><NavLink to="/dashboard/customer-care"><FaPhone /> Customer Care</NavLink></li>
+            <li><NavLink to="/dashboard/logout"><FaSignOutAlt /> Logout</NavLink></li>
+          </ul>
+        </nav>
+      </div>
       <div className="welcome-message">
         <p>Welcome Back: {user.username} (Ke)</p>
       </div>
       <div className="package-info">
-        <p>
-          You are at <span className="no-package">No Package</span>, 0% Profit Daily.
-          <button className="link-button">Click me to buy</button>
-        </p>
-        <p className="resolutions">
-          "Buy Basic package@1000 KSH and get awarded 3000 KSH to your M-pesa, buy the PREMIUM package @2500 KSH and get awarded 7500 KSH to your M-pesa, buy the BOSS package at 5000 KSH and get awarded 15000 KSH to your M-pesa, buy GOLD VISA package 10000 KSH and get awarded 50000 KSH to your M-pesa"
-        </p>
+        <p>You are at <strong>No Package</strong>, 0% Profit Daily.</p>
+        <button className="link-button">Click me to buy</button>
       </div>
       <div className="dashboard-content">
         <div className="card account-balance">

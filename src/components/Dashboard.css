@@ -1,158 +1,249 @@
 :root {
-    --primary-color: #007bff;
-    --primary-hover-color: #0056b3;
-    --background-color: #f4f4f9;
-    --header-background: linear-gradient(to right, #007bff, #0056b3);
-    --card-background-color: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: var(--background-color);
-  }
-  
-  .dashboard-header {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    background: var(--header-background);
-    color: white;
-  }
-  
-  .dashboard-logo {
-    height: 50px;
-    margin-right: 20px;
-  }
-  
-  .welcome-message {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .package-info {
-    padding: 10px 20px;
-    background: white;
-    border-radius: 5px;
-    margin: 20px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .package-info p {
-    margin: 5px 0;
-  }
-  
-  .no-package {
-    color: red;
-  }
-  
-  .link-button {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    cursor: pointer;
-    text-decoration: underline;
-    font-size: 1rem;
-  }
-  
-  .link-button:hover {
-    color: var(--primary-hover-color);
-  }
-  
-  .resolutions {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #555;
-  }
-  
-  .dashboard-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .card {
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  .card h3 {
-    margin: 0 0 10px;
-  }
-  
-  .card p {
-    margin: 0;
-    font-size: 1.2rem;
-  }
-  
-  .card-button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .card-button:hover {
-    background-color: var(--primary-hover-color);
-  }
-  
-  .package-x {
-    font-size: 5rem;
-    color: red;
-    text-align: center;
-  }
-  
-  .dashboard-footer {
-    background: var(--card-background-color);
-    padding: 20px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .user-details {
-    margin-bottom: 20px;
-  }
-  
-  .user-details table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .user-details th,
-  .user-details td {
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  .affiliate-link {
-    margin: 10px 0;
-  }
-  
-  .copy-link-button {
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .copy-link-button:hover {
-    background-color: var(--primary-hover-color);
-  }
-  
+  --primary-color: #007bff;
+  --primary-hover-color: #0056b3;
+  --background-color: #f4f4f9;
+  --header-background: linear-gradient(to right, #007bff, #0056b3);
+  --card-background-color: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --overlay-background: rgba(75, 0, 130, 0.9); /* Purple overlay color */
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--background-color);
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--header-background);
+  color: white;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-logo {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.dashboard-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.hamburger-icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--overlay-background);
+  z-index: 2000;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay.open {
+  transform: translateY(0);
+}
+
+.overlay-menu {
+  background: transparent;
+}
+
+.overlay-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.overlay-menu ul li {
+  margin: 20px 0;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-menu ul li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.overlay-menu ul li svg {
+  margin-right: 10px;
+}
+
+.welcome-message {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: #333;
+  width: 100%;
+}
+
+.package-info {
+  padding: 10px 20px;
+  background: white;
+  border-radius: 5px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.package-info p {
+  margin: 5px 0;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
+.link-button:hover {
+  color: var(--primary-hover-color);
+}
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.card {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  height: 150px;
+}
+
+.card h3 {
+  margin: 0 0 10px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.card-button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.card-button:hover {
+  background-color: var(--primary-hover-color);
+}
+
+.package-x {
+  font-size: 5rem;
+  color: red;
+  text-align: center;
+}
+
+.dashboard-footer {
+  background: var(--card-background-color);
+  padding: 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-top: 20px;
+}
+
+.user-details {
+  margin-bottom: 20px;
+}
+
+.user-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-details th,
+.user-details td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.affiliate-link {
+  margin: 10px 0;
+}
+
+.copy-link-button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.copy-link-button:hover {
+  background-color: var(--primary-hover-color);
+}
