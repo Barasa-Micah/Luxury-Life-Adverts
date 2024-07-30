@@ -7,8 +7,8 @@ import { FaBars, FaHome, FaChartLine, FaUsers, FaExchangeAlt, FaBox, FaCloudUplo
 const Dashboard = () => {
   const [user, setUser] = useState({ username: "", firstName: "", lastName: "" });
   const [menuOpen, setMenuOpen] = useState(false);
-  const [unreadMessages, setUnreadMessages] = useState(0); // Initial count
-  const [cartItems, setCartItems] = useState(0); // Initial count
+  const [unreadMessages, setUnreadMessages] = useState(0);
+  const [cartItems, setCartItems] = useState(0);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -20,9 +20,8 @@ const Dashboard = () => {
 
     // Simulate fetching unread messages count and cart items count
     const fetchCounts = async () => {
-      // Replace these with actual API calls or other logic
-      const messagesCount = await Promise.resolve(3); // Example: fetchUnreadMessagesCount()
-      const itemsCount = await Promise.resolve(2); // Example: fetchCartItemsCount()
+      const messagesCount = await Promise.resolve(3);
+      const itemsCount = await Promise.resolve(2);
       setUnreadMessages(messagesCount);
       setCartItems(itemsCount);
     };
@@ -64,7 +63,7 @@ const Dashboard = () => {
         <nav className="overlay-menu" onClick={(e) => e.stopPropagation()}>
           <h2 className="overlay-title">Menu</h2>
           <ul>
-            <li><NavLink to="/dashboard/home"><FaHome /> Home</NavLink></li>
+            <li><NavLink to="/dashboard"><FaHome /> Home</NavLink></li>
             <li><NavLink to="/dashboard/investment"><FaChartLine /> Investment</NavLink></li>
             <li><NavLink to="/dashboard/team"><FaUsers /> Team</NavLink></li>
             <li><NavLink to="/dashboard/transactions"><FaExchangeAlt /> Transactions</NavLink></li>
