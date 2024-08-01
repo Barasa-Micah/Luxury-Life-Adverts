@@ -1,10 +1,10 @@
 import React from 'react';
-import './Investment.css';
+import './Team.css';
 import logo from '../assets/luxurylogo.jpeg';
 import { FaBars, FaHome, FaChartLine, FaUsers, FaExchangeAlt, FaBox, FaCloudUploadAlt, FaShoppingCart, FaPhone, FaSignOutAlt, FaInfinity, FaCubes, FaKey } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 
-const Investment = () => {
+const Team = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   const toggleMenu = () => {
@@ -17,11 +17,11 @@ const Investment = () => {
   };
 
   return (
-    <div className="investment-container">
-      <header className="investment-header">
+    <div className="team-container">
+      <header className="team-header">
         <div className="header-left">
-          <img src={logo} alt="Luxury Life Adverts" className="investment-logo" />
-          <h1 className="investment-title">Rich-Life Adverts</h1>
+          <img src={logo} alt="Luxury Life Adverts" className="team-logo" />
+          <h1 className="team-title">Rich-Life Adverts</h1>
         </div>
         <div className="header-right">
           <FaBars className="hamburger-icon" onClick={toggleMenu} />
@@ -33,7 +33,7 @@ const Investment = () => {
           <ul>
             <li><NavLink to="/dashboard"><FaHome /> Home</NavLink></li>
             <li><NavLink to="/investment"><FaChartLine /> Investment</NavLink></li>
-            <li><NavLink to="/dashboard/team"><FaUsers /> Team</NavLink></li>
+            <li><NavLink to="/team"><FaUsers /> Team</NavLink></li>
             <li><NavLink to="/dashboard/transactions"><FaExchangeAlt /> Transactions</NavLink></li>
             <li><NavLink to="/dashboard/packages"><FaBox /> Packages</NavLink></li>
             <li><NavLink to="/dashboard/forex"><FaInfinity /> Forex</NavLink></li>
@@ -46,33 +46,40 @@ const Investment = () => {
           </ul>
         </nav>
       </div>
-      <div className="investment-header-info">
-        <h2>Investment Info</h2>
-        <p>Unlock financial growth with our exclusive investment strategy. Flexible options from 1 to 5 days, delivering an impressive 80% profit. Seamless and transparent, our process ensures hassle-free investing. Fill out the form below and start your journey.</p>
+      <div className="team-header-info">
+        <h2>MY RICHLIFE TEAM.</h2>
+        <p>“Keep the team under one roof #70% Assets.” <br /> #Many regards Dear Mic</p>
       </div>
-      <div className="investment-content">
-        <div className="card investment-form">
-          <h3>Investment Form</h3>
+      <div className="team-content">
+        <div className="card team-form">
+          <h3>MY RICHLIFE TEAM.</h3>
           <form>
-            <select name="days">
-              <option value="">-- How many Days --</option>
-              <option value="1">1 Day</option>
-              <option value="3">3 Days</option>
-              <option value="5">5 Days</option>
-            </select>
-            <input type="number" placeholder="Amount to Invest" />
-            <input type="text" placeholder="Profit: 0.00 KSH" readOnly />
-            <input type="text" placeholder="Phone Number" />
-            <button type="submit">Invest Now</button>
+            <input type="text" placeholder="Enter Username to claim" />
+            <button type="submit">Claim Downline</button>
           </form>
         </div>
-        <div className="card investment-records">
-          <h3>My Investment Records</h3>
-          <p>Your First Investment Records will be visible here.</p>
+        <div className="card team-records">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Phone</th>
+                <th>Joined</th>
+                <th>Status</th>
+                <th>Upline</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colSpan="6">Your Downline will appear here.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   );
 };
 
-export default Investment;
+export default Team;
