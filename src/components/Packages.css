@@ -178,10 +178,16 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    font-size: 1rem;
   }
   
   .package-card button:hover {
     background: var(--primary-hover-color);
+  }
+  
+  .plan-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
   }
   

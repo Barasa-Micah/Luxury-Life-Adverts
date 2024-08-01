@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import Investment from './components/Investment';
 import Team from './components/Team'; 
 import Transactions from './components/Transactions';
+import Packages from './components/Packages';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/investment" element={<Investment />} />
           <Route path="/team" element={<Team />} /> 
           <Route path='/transactions' element={<Transactions />} />
+          <Route path='/packages' element={<Packages />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>

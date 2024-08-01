@@ -1,7 +1,7 @@
 import React from 'react';
-import './Packages.css'; 
+import './Packages.css'; // Ensure this file exists and is properly styled
 import logo from '../assets/luxurylogo.jpeg';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaStar, FaGem, FaCrown } from 'react-icons/fa'; // Import the icons
 import { NavLink } from 'react-router-dom';
 
 const Packages = () => {
@@ -21,7 +21,7 @@ const Packages = () => {
       <header className="packages-header">
         <div className="header-left">
           <img src={logo} alt="Luxury Life Adverts" className="packages-logo" />
-          <h1 className="packages-title">Luxury Life Adverts</h1>
+          <h1 className="packages-title">Rich-Life Adverts</h1>
         </div>
         <div className="header-right">
           <FaBars className="hamburger-icon" onClick={toggleMenu} />
@@ -52,6 +52,7 @@ const Packages = () => {
       </div>
       <div className="packages-content">
         <div className="package-card">
+          <FaStar className="plan-icon" /> {/* Add the icon */}
           <h3>BASIC PLAN</h3>
           <ul>
             <li>Spinning Wheel</li>
@@ -62,6 +63,7 @@ const Packages = () => {
           <button>Buy 1000 KSH</button>
         </div>
         <div className="package-card">
+          <FaGem className="plan-icon" /> {/* Add the icon */}
           <h3>PREMIUM PLAN</h3>
           <ul>
             <li>Spinning Wheel</li>
@@ -72,6 +74,7 @@ const Packages = () => {
           <button>Buy 2500 KSH</button>
         </div>
         <div className="package-card">
+          <FaCrown className="plan-icon" /> 
           <h3>BOSS PLAN</h3>
           <ul>
             <li>Spinning Wheel</li>
