@@ -8,6 +8,7 @@ import Investment from './components/Investment';
 import Team from './components/Team'; 
 import Transactions from './components/Transactions';
 import Packages from './components/Packages';
+import Forex from './components/Forex';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/team" element={<Team />} /> 
           <Route path='/transactions' element={<Transactions />} />
           <Route path='/packages' element={<Packages />} />
+          <Route path='/forex' element={<Forex />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>
