@@ -6,6 +6,7 @@
     --card-background-color: #ffffff;
     --shadow-color: rgba(0, 0, 0, 0.2);
     --overlay-background: rgba(75, 0, 130, 0.9); /* Purple overlay color */
+    --gradient-background: linear-gradient(to bottom, #004d99, #007bff);
   }
   
   body, html {
@@ -19,34 +20,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
     background-color: var(--background-color);
     height: 100%;
     overflow: auto;
     width: 100%;
   }
   
-  .team-header,
-  .team-header-info {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-    background-color: var(--header-background);
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .team-header-info {
-    background: linear-gradient(to bottom, #007bff, #0056b3);
-    padding: 30px;
-  }
-  
   .team-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 20px;
+    background: var(--header-background);
+    color: white;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
   }
   
   .header-left {
@@ -55,8 +45,13 @@
   }
   
   .team-logo {
-    width: 50px;
+    height: 50px;
     margin-right: 10px;
+  }
+  
+  .team-title {
+    margin: 0;
+    font-size: 1.5rem;
   }
   
   .header-right {
@@ -65,7 +60,7 @@
   }
   
   .hamburger-icon {
-    font-size: 24px;
+    font-size: 2rem;
     cursor: pointer;
   }
   
@@ -129,6 +124,17 @@
     margin-right: 10px;
   }
   
+  .team-header-info {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    background: var(--gradient-background);
+    color: white;
+    padding: 50px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
   .team-content {
     display: flex;
     flex-direction: column;
@@ -168,16 +174,16 @@
   
   .team-form form button {
     padding: 10px 20px;
-    background-color: var(--primary-color);
+    background: linear-gradient(to right, #ff66cc, #ff3399);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
   }
   
   .team-form form button:hover {
-    background-color: var(--primary-hover-color);
+    background: linear-gradient(to right, #ff3399, #ff66cc);
   }
   
   .team-records table {
