@@ -11,6 +11,7 @@ import Packages from './components/Packages';
 import Forex from './components/Forex';
 import Uploads from './components/Uploads';
 import MarketHub from './components/MarketHub';
+import Cart from './components/Cart';
 function App() {
   return (
     <Router>
@@ -25,7 +26,8 @@ function App() {
           <Route path='/packages' element={<Packages />} />
           <Route path='/forex' element={<Forex />} />
           <Route path='/uploads' element={<Uploads />} />
-          <Route path='/markethub' element={<MarketHub />} ></Route>
+          <Route path='/markethub' element={<MarketHub />} />
+          <Route path='/cart' element={<Cart />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>
