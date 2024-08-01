@@ -6,7 +6,7 @@ const Forex = () => {
   return (
     <div className="forex-container">
       <div className="forex-header">
-        <h1>RICH FOREX BOTS.</h1>
+        <h1>LUXURY FOREX BOTS.</h1>
         <p>"Since Richlife Provides Wealth Standards below are Forex Bots And pdf strategie template that we consider as an Assets Feel free to buy that Suits you need. #upline 70%"</p>
       </div>
       <div className="forex-cards">

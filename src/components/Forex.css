@@ -1,0 +1,73 @@
+.forex-container {
+    padding: 20px;
+    background: linear-gradient(to right, #007bff, #0056b3);
+  }
+  
+  .forex-header {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background: #0f4c75;
+    margin-bottom: 20px;
+  }
+  
+  .forex-header h1 {
+    margin: 0;
+  }
+  
+  .forex-header p {
+    margin: 5px 0;
+  }
+  
+  .forex-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .forex-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 22%;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .forex-icon {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  
+  .forex-card h3 {
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  .forex-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .forex-card li {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .forex-card button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .forex-card button:hover {
+    background: #0056b3;
+  }
+  
