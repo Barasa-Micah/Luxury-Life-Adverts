@@ -5,7 +5,8 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Investment from './components/Investment';
-import Team from './components/Team'; // Import Team component
+import Team from './components/Team'; 
+import Transactions from './components/Transactions';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/investment" element={<Investment />} />
-          <Route path="/team" element={<Team />} /> {/* Add route for Team component */}
+          <Route path="/team" element={<Team />} /> 
+          <Route path='/transaction' element={<Transactions />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>
