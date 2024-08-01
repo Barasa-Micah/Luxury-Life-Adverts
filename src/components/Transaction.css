@@ -1,0 +1,227 @@
+:root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --background-color: #f4f4f9;
+    --header-background: linear-gradient(to right, #007bff, #0056b3);
+    --card-background-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --overlay-background: rgba(75, 0, 130, 0.9); /* Purple overlay color */
+    --gradient-background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .transactions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background-color);
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+  }
+  
+  .transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: var(--header-background);
+    color: white;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .transactions-logo {
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  .transactions-title {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .hamburger-icon {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--overlay-background);
+    z-index: 2000;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .overlay.open {
+    transform: translateY(0);
+  }
+  
+  .overlay-menu {
+    background: transparent;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .overlay-title {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  
+  .overlay-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .overlay-menu ul li {
+    margin: 20px 0;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .overlay-menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  
+  .overlay-menu ul li svg {
+    margin-right: 10px;
+  }
+  
+  .transactions-header-info {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    background: var(--gradient-background);
+    color: white;
+    padding: 50px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transactions-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .tabs button {
+    background: var(--card-background-color);
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .tabs button.active,
+  .tabs button:hover {
+    background: var(--primary-color);
+    color: white;
+  }
+  
+  .card {
+    background: var(--card-background-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .card h3 {
+    margin-bottom: 10px;
+  }
+  
+  .transaction-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .transaction-form input {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .transaction-form button {
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .transaction-form button:hover {
+    background: var(--primary-hover-color);
+  }
+  
+  .transactions-records table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .transactions-records th,
+  .transactions-records td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .transactions-records tbody tr td {
+    color: #999;
+  }
+  
