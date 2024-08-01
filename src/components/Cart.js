@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaShoppingCart, FaEnvelope, FaTrashAlt } from 'react-icons/fa';
 import './Cart.css';
+import logo from '../assets/luxurylogo.jpeg'
 
 const Cart = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,10 +10,41 @@ const Cart = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const products = [
+    {
+      id: 1,
+      name: 'Cup Cake',
+      qty: 1,
+      price: '400.00 KSH',
+      image: 'https://via.placeholder.com/50?text=Cup+Cake'
+    },
+    {
+      id: 2,
+      name: 'BlueTooth',
+      qty: 1,
+      price: '400.00 KSH',
+      image: 'https://via.placeholder.com/50?text=BlueTooth'
+    },
+    {
+      id: 3,
+      name: 'Cup Cake',
+      qty: 1,
+      price: '400.00 KSH',
+      image: 'https://via.placeholder.com/50?text=Cup+Cake'
+    },
+    {
+      id: 4,
+      name: 'BlueTooth',
+      qty: 1,
+      price: '400.00 KSH',
+      image: 'https://via.placeholder.com/50?text=BlueTooth'
+    }
+  ];
+
   return (
     <div className={`cart-container ${menuOpen ? 'menu-open' : ''}`}>
       <header className="cart-header">
-        <img src="https://richlifeadverts.com/logo.png" alt="Rich Life Adverts Logo" className="cart-logo" />
+        <img src={logo} alt="Luxury Life Adverts Logo" className="cart-logo" />
         <div className="header-right">
           <div className="icon-container">
             <FaEnvelope className="icon" />
@@ -41,34 +73,15 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td><img src="https://via.placeholder.com/50" alt="Product" /> Cup Cake</td>
-              <td>1</td>
-              <td>400.00 KSH</td>
-              <td><FaTrashAlt className="delete-icon" /></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td><img src="https://via.placeholder.com/50" alt="Product" /> BlueTooth</td>
-              <td>1</td>
-              <td>400.00 KSH</td>
-              <td><FaTrashAlt className="delete-icon" /></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td><img src="https://via.placeholder.com/50" alt="Product" /> Cup Cake</td>
-              <td>1</td>
-              <td>400.00 KSH</td>
-              <td><FaTrashAlt className="delete-icon" /></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td><img src="https://via.placeholder.com/50" alt="Product" /> BlueTooth</td>
-              <td>1</td>
-              <td>400.00 KSH</td>
-              <td><FaTrashAlt className="delete-icon" /></td>
-            </tr>
+            {products.map((product) => (
+              <tr key={product.id}>
+                <td>{product.id}</td>
+                <td><img src={product.image} alt={product.name} /> {product.name}</td>
+                <td>{product.qty}</td>
+                <td>{product.price}</td>
+                <td><FaTrashAlt className="delete-icon" /></td>
+              </tr>
+            ))}
           </tbody>
         </table>
         <div className="cart-summary">
