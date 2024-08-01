@@ -9,6 +9,7 @@ import Team from './components/Team';
 import Transactions from './components/Transactions';
 import Packages from './components/Packages';
 import Forex from './components/Forex';
+import Uploads from './components/Uploads';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/transactions' element={<Transactions />} />
           <Route path='/packages' element={<Packages />} />
           <Route path='/forex' element={<Forex />} />
+          <Route path='/uploads' element={<Uploads />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>
