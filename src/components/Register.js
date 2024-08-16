@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Register.css';
 import logo from '../assets/luxurylogo.jpeg';
+import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -23,14 +24,30 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Save user data to localStorage for now
-    localStorage.setItem('username', formData.username);
-    localStorage.setItem('firstName', formData.firstName);
-    localStorage.setItem('lastName', formData.lastName);
-    // Navigate to dashboard
-    navigate("/dashboard");
+    
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:5000/register', formData);
+
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('username', response.data.username);
+      localStorage.setItem('firstName', response.data.firstName);
+      localStorage.setItem('lastName', response.data.lastName);
+      localStorage.setItem('email', response.data.email);
+      localStorage.setItem('phone', response.data.phone);
+      localStorage.setItem('country', response.data.country);
+
+      navigate("/dashboard");
+    } catch (error) {
+      console.error('There was an error registering the user:', error);
+      alert('Registration failed. Please try again.');
+    }
   };
 
   return (

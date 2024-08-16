@@ -1,12 +1,33 @@
-import React, { useState } from 'react';
-import './Transactions.css';  // Ensure this file exists
+import React, { useEffect, useState } from 'react';
+import './Transactions.css';
 import logo from '../assets/luxurylogo.jpeg';
 import { FaBars, FaHome, FaChartLine, FaUsers, FaExchangeAlt, FaBox, FaCloudUploadAlt, FaShoppingCart, FaPhone, FaSignOutAlt, FaInfinity, FaCubes, FaKey } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 const Transactions = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('deposit');
+  const [transactions, setTransactions] = useState([]);
+  const [formData, setFormData] = useState({ amount: '', phoneNumber: '' });
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/transactions', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setTransactions(response.data.transactions);
+      } catch (error) {
+        console.error('Error fetching transactions:', error);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -17,38 +38,58 @@ const Transactions = () => {
     }
   };
 
-  const renderForm = () => {
-    switch (activeTab) {
-      case 'deposit':
-        return (
-          <form className="transaction-form">
-            <h3>Request Deposit</h3>
-            <input type="text" placeholder="Amount" />
-            <input type="text" placeholder="Phone number" />
-            <button type="submit">Request Deposit</button>
-          </form>
-        );
-      case 'transfer':
-        return (
-          <form className="transaction-form">
-            <h3>Request Transfer</h3>
-            <input type="text" placeholder="Amount" />
-            <input type="text" placeholder="Phone number" />
-            <button type="submit">Request Transfer</button>
-          </form>
-        );
-      case 'withdraw':
-        return (
-          <form className="transaction-form">
-            <h3>Request Withdraw</h3>
-            <input type="text" placeholder="Amount" />
-            <input type="text" placeholder="Phone number" />
-            <button type="submit">Request Withdraw</button>
-          </form>
-        );
-      default:
-        return null;
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem('token');
+    try {
+      const response = await axios.post(`http://localhost:5000/transactions`, {
+        type: activeTab,
+        amount: formData.amount,
+        phone: formData.phoneNumber,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // Add the new transaction to the transactions list
+      setTransactions([...transactions, response.data.transaction]);
+
+      // Reset form
+      setFormData({ amount: '', phoneNumber: '' });
+
+    } catch (error) {
+      console.error('Error submitting transaction:', error);
     }
+  };
+
+  const renderForm = () => {
+    return (
+      <form className="transaction-form" onSubmit={handleSubmit}>
+        <h3>Request {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h3>
+        <input
+          type="text"
+          name="amount"
+          placeholder="Amount"
+          value={formData.amount}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="phoneNumber"
+          placeholder="Phone number"
+          value={formData.phoneNumber}
+          onChange={handleInputChange}
+        />
+        <button type="submit">Request {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</button>
+      </form>
+    );
   };
 
   return (
@@ -82,7 +123,7 @@ const Transactions = () => {
         </nav>
       </div>
       <div className="transactions-header-info">
-        <h2>Request Deposit</h2>
+        <h2>Request {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</h2>
       </div>
       <div className="transactions-content">
         <div className="tabs">
@@ -104,9 +145,21 @@ const Transactions = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td colSpan="5">Your Transactions will appear here.</td>
-              </tr>
+              {transactions.length > 0 ? (
+                transactions.map((transaction, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{transaction.type}</td>
+                    <td>{transaction.amount}</td>
+                    <td>{new Date(transaction.created_at).toLocaleDateString()}</td>
+                    <td>{transaction.status}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5">Your Transactions will appear here.</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

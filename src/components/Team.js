@@ -21,7 +21,7 @@ const Team = () => {
       <header className="team-header">
         <div className="header-left">
           <img src={logo} alt="Luxury Life Adverts" className="team-logo" />
-          <h1 className="team-title">Rich-Life Adverts</h1>
+          <h1 className="team-title">Luxury life Adverts</h1>
         </div>
         <div className="header-right">
           <FaBars className="hamburger-icon" onClick={toggleMenu} />
@@ -47,12 +47,12 @@ const Team = () => {
         </nav>
       </div>
       <div className="team-header-info">
-        <h2>MY RICHLIFE TEAM.</h2>
+        <h2>MY LUXURY LIFE TEAM.</h2>
         <p>“Keep the team under one roof #70% Assets.” <br /> #Many regards Dear Mic</p>
       </div>
       <div className="team-content">
         <div className="card team-form">
-          <h3>MY RICHLIFE TEAM.</h3>
+          <h3>MY LUXURY LIFE TEAM.</h3>
           <form>
             <input type="text" placeholder="Enter Username to claim" />
             <button type="submit">Claim Downline</button>

@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Investment.css';
 import logo from '../assets/luxurylogo.jpeg';
 import { FaBars, FaHome, FaChartLine, FaUsers, FaExchangeAlt, FaBox, FaCloudUploadAlt, FaShoppingCart, FaPhone, FaSignOutAlt, FaInfinity, FaCubes, FaKey } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 const Investment = () => {
-  const [menuOpen, setMenuOpen] = React.useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [days, setDays] = useState('');
+  const [amount, setAmount] = useState('');
+  const [profit, setProfit] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [investmentRecords, setInvestmentRecords] = useState([]);
+
+  useEffect(() => {
+    const fetchInvestmentRecords = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/dashboard', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setInvestmentRecords(response.data.investments);
+      } catch (error) {
+        console.error('Error fetching investment records:', error);
+      }
+    };
+
+    fetchInvestmentRecords();
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -13,6 +37,38 @@ const Investment = () => {
       document.body.classList.add('menu-open');
     } else {
       document.body.classList.remove('menu-open');
+    }
+  };
+
+  const handleInvest = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.post(
+        'http://localhost:5000/investment',
+        { days, amount, profit },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert(response.data.message);
+      // Reset form fields
+      setDays('');
+      setAmount('');
+      setProfit('');
+      setPhoneNumber('');
+      // Re-fetch investment records
+      const updatedRecords = await axios.get('http://localhost:5000/dashboard', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setInvestmentRecords(updatedRecords.data.investments);
+    } catch (error) {
+      console.error('Error submitting investment:', error);
+      alert('Failed to submit investment. Please try again.');
     }
   };
 
@@ -53,22 +109,50 @@ const Investment = () => {
       <div className="investment-content">
         <div className="card investment-form">
           <h3>Investment Form</h3>
-          <form>
-            <select name="days">
+          <form onSubmit={handleInvest}>
+            <select name="days" value={days} onChange={(e) => setDays(e.target.value)} required>
               <option value="">-- How many Days --</option>
               <option value="1">1 Day</option>
               <option value="3">3 Days</option>
               <option value="5">5 Days</option>
             </select>
-            <input type="number" placeholder="Amount to Invest" />
-            <input type="text" placeholder="Profit: 0.00 KSH" readOnly />
-            <input type="text" placeholder="Phone Number" />
+            <input
+              type="number"
+              placeholder="Amount to Invest"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Profit: 0.00 KSH"
+              value={profit}
+              onChange={(e) => setProfit(e.target.value)}
+              readOnly
+            />
+            <input
+              type="text"
+              placeholder="Phone Number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              required
+            />
             <button type="submit">Invest Now</button>
           </form>
         </div>
         <div className="card investment-records">
           <h3>My Investment Records</h3>
-          <p>Your First Investment Records will be visible here.</p>
+          {investmentRecords.length > 0 ? (
+            <ul>
+              {investmentRecords.map((record, index) => (
+                <li key={index}>
+                  {record.days} days, Amount: {record.amount} KSH, Profit: {record.profit} KSH
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Your First Investment Records will be visible here.</p>
+          )}
         </div>
       </div>
     </div>

@@ -1,11 +1,11 @@
 :root {
   --primary-color: #007bff;
   --primary-hover-color: #0056b3;
-  --background-color: #f4f4f9;
-  --header-background: linear-gradient(to right, #007bff, #0056b3);
+  --background-color: #d1d1d1;
+  --header-background: linear-gradient(to right, #720f7a, #0000ff);
   --card-background-color: #ffffff;
   --shadow-color: rgba(0, 0, 0, 0.2);
-  --overlay-background: rgba(75, 0, 130, 0.9); /* Purple overlay color */
+  --overlay-background: rgba(75, 0, 130, 0.9);
 }
 
 body, html {
@@ -150,6 +150,7 @@ body.menu-open {
   font-size: 1.2rem;
   color: #333;
   width: 100%;
+  text-align: center;
 }
 
 .package-info {
@@ -190,19 +191,20 @@ body.menu-open {
 }
 
 .card {
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
   color: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   height: 150px;
+  position: relative;
 }
 
 .card h3 {
   margin: 0 0 10px;
+  font-size: 1.2rem;
 }
 
 .card p {
@@ -210,18 +212,74 @@ body.menu-open {
   font-size: 1.2rem;
 }
 
+.card .progress-bar {
+  height: 5px;
+  background-color: white;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+
+.progress-bar-green {
+  background-color: #00ff00;
+}
+
+/* Custom Gradient for Specific Cards */
+.account-balance {
+  background: linear-gradient(to right, #ff8c00, #ff0080);
+}
+
+.invested-profit {
+  background: linear-gradient(to right, #7f00ff, #e100ff);
+}
+
+.transactions {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+}
+
+.uploads {
+  background: linear-gradient(to right, #00f260, #0575e6);
+}
+
+.whatsapp-balance {
+  background: linear-gradient(to right, #ff00ff, #ff0099);
+}
+
+.total-whatsapp-withdrawn {
+  background: linear-gradient(to right, #ff0000, #ff6600);
+}
+
+.current-package {
+  background: linear-gradient(to right, #ff0000, #660000);
+}
+
+.withdrawn {
+  background: linear-gradient(to right, #00ffcc, #00cc99);
+}
+
+.your-cashback {
+  background: linear-gradient(to right, #ffcc00, #ff9900);
+}
+
+.deposit-balance {
+  background: linear-gradient(to right, #00cc66, #009933);
+}
+
 .card-button {
   margin-top: 10px;
   padding: 10px;
-  background-color: var(--primary-color);
+  background-color: #6f42c1;
   border: none;
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  align-self: flex-start;
 }
 
 .card-button:hover {
-  background-color: var(--primary-hover-color);
+  background-color: #5931a1;
 }
 
 .package-x {
@@ -268,4 +326,15 @@ body.menu-open {
 
 .copy-link-button:hover {
   background-color: var(--primary-hover-color);
+}
+
+/* Additional Styling */
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+}
+
+.menu-open .overlay {
+  display: block;
 }

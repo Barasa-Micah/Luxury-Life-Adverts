@@ -12,6 +12,7 @@ import Forex from './components/Forex';
 import Uploads from './components/Uploads';
 import MarketHub from './components/MarketHub';
 import Cart from './components/Cart';
+import PremiumCodes from './components/PremiumCodes';
 function App() {
   return (
     <Router>
@@ -28,6 +29,7 @@ function App() {
           <Route path='/uploads' element={<Uploads />} />
           <Route path='/markethub' element={<MarketHub />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/premiumcodes' element={<PremiumCodes />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </div>

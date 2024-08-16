@@ -1,41 +1,61 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Dashboard.css';
+import './Dashboard.css'
 import logo from '../assets/luxurylogo.jpeg';
 import { FaBars, FaHome, FaChartLine, FaUsers, FaExchangeAlt, FaBox, FaCloudUploadAlt, FaShoppingCart, FaPhone, FaSignOutAlt, FaEnvelope, FaInfinity, FaCubes, FaKey } from 'react-icons/fa';
+import axios from 'axios';
 
 const Dashboard = () => {
   const [user, setUser] = useState({ username: "", firstName: "", lastName: "" });
+  const [investments, setInvestments] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [unreadMessages, setUnreadMessages] = useState(0);
   const [cartItems, setCartItems] = useState(0);
 
   useEffect(() => {
-    const storedUsername = localStorage.getItem('username');
-    const storedFirstName = localStorage.getItem('firstName');
-    const storedLastName = localStorage.getItem('lastName');
-    if (storedUsername && storedFirstName && storedLastName) {
-      setUser({ username: storedUsername, firstName: storedFirstName, lastName: storedLastName });
-    }
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
 
-    // Simulate fetching unread messages count and cart items count
-    const fetchCounts = async () => {
-      const messagesCount = await Promise.resolve(3);
-      const itemsCount = await Promise.resolve(2);
-      setUnreadMessages(messagesCount);
-      setCartItems(itemsCount);
+        const [dashboardResponse, messagesResponse, cartResponse] = await Promise.all([
+          axios.get('http://localhost:5000/dashboard', {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          axios.get('http://localhost:5000/unread-messages', {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          axios.get('http://localhost:5000/cart-items', {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+        ]);
+
+        const userData = dashboardResponse.data;
+
+        setUser({
+          username: userData.username,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          email: userData.email,
+          phone: userData.phone,
+          country: userData.country,
+        });
+
+        setInvestments(userData.investments);
+        setUnreadMessages(messagesResponse.data.unreadMessagesCount);
+        setCartItems(cartResponse.data.cartItemsCount);
+
+      } catch (error) {
+        console.error('Error fetching dashboard data:', error);
+        // Handle error, e.g., redirect to login
+      }
     };
 
-    fetchCounts();
+    fetchData();
   }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
-    if (!menuOpen) {
-      document.body.classList.add('menu-open');
-    } else {
-      document.body.classList.remove('menu-open');
-    }
+    document.body.classList.toggle('menu-open', menuOpen);
   };
 
   const affiliateLink = `https://luxurylifeadverts.com/signup.php?cee=${user.firstName}${user.lastName}`;
@@ -45,7 +65,7 @@ const Dashboard = () => {
       <header className="dashboard-header">
         <div className="header-left">
           <img src={logo} alt="Luxury Life Adverts" className="dashboard-logo" />
-          <h1 className="dashboard-title">Rich-Life Adverts</h1>
+          <h1 className="dashboard-title">Luxury Life Adverts</h1>
         </div>
         <div className="header-right">
           <div className="icon-container">
@@ -79,7 +99,7 @@ const Dashboard = () => {
         </nav>
       </div>
       <div className="welcome-message">
-        <p>Welcome Back: {user.username} (Ke)</p>
+        <p>Welcome Back: {user.username} ({user.country})</p>
       </div>
       <div className="package-info">
         <p>You are at <strong>No Package</strong>, 0% Profit Daily.</p>
@@ -89,30 +109,44 @@ const Dashboard = () => {
         <div className="card account-balance">
           <h3>Account Balance:</h3>
           <p>0.00 KSH</p>
+          <div className="progress-bar progress-bar-green"></div>
         </div>
         <div className="card invested-profit">
           <h3>Invested Profit:</h3>
-          <p>0.00 KSH</p>
+          {investments.length > 0 ? (
+            <ul>
+              {investments.map((investment, index) => (
+                <li key={index}>
+                  {investment.days} days, Amount: {investment.amount} KSH, Profit: {investment.profit} KSH
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No investments yet.</p>
+          )}
           <button className="card-button">Withdraw</button>
         </div>
         <div className="card whatsapp-balance">
-          <h3>Whatsapp Balance:</h3>
+          <h3>WhatsApp Balance:</h3>
           <p>0.00 KSH</p>
+          <div className="progress-bar progress-bar-green"></div>
         </div>
         <div className="card total-whatsapp-withdrawn">
-          <h3>Total Whatsapp Withdrawn:</h3>
+          <h3>Total WhatsApp Withdrawn:</h3>
           <p>0.00 KSH</p>
+          <div className="progress-bar progress-bar-green"></div>
         </div>
         <div className="card current-package">
-          <h3>Current Package:</h3>
+          <h3>Current Package</h3>
           <p>No Package</p>
           <div className="package-x">X</div>
         </div>
         <div className="card withdrawn">
           <h3>Withdrawn:</h3>
           <p>0.00 KSH</p>
+          <div className="progress-bar progress-bar-green"></div>
         </div>
-        <div className="card cashback">
+        <div className="card your-cashback">
           <h3>Your Cashback:</h3>
           <p>0.00 KSH</p>
           <button className="card-button">Redeem</button>
@@ -120,6 +154,7 @@ const Dashboard = () => {
         <div className="card deposit-balance">
           <h3>Deposit Balance:</h3>
           <p>0.00 KSH</p>
+          <div className="progress-bar progress-bar-green"></div>
         </div>
       </div>
       <footer className="dashboard-footer">
@@ -135,8 +170,8 @@ const Dashboard = () => {
             <tbody>
               <tr>
                 <td>{user.username}</td>
-                <td>barasamica@gmail.com</td>
-                <td>11412121111</td>
+                <td>{user.email}</td>
+                <td>{user.phone}</td>
               </tr>
             </tbody>
           </table>
